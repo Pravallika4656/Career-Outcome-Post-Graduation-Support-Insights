@@ -2,3 +2,4 @@ uvicorn
 langchain 
 openai 
 python-dotenv
+fastapi

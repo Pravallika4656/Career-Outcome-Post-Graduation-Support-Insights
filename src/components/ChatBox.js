@@ -21,6 +21,9 @@ const ChatBox = () => {
   const [insight, setInsight] = useState("");
   const [loadingInsights, setLoadingInsights] = useState(false);
 
+  // ✅ ✅ BACKEND URL (Render)
+  const API_BASE = "https://career-outcome-post-graduation-support.onrender.com";
+
   // ✅ Chatbot Message Sender
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -30,7 +33,7 @@ const ChatBox = () => {
     setInput("");
 
     try {
-      const response = await axios.post("http://localhost:8000/api/chat", {
+      const response = await axios.post(`${API_BASE}/api/chat`, {
         message: msg,
       });
 
@@ -51,12 +54,12 @@ const ChatBox = () => {
     setLoadingInsights(true);
 
     try {
-      const response = await axios.post("http://localhost:8000/api/parent_insights", {
+      const response = await axios.post(`${API_BASE}/api/parent_insights`, {
         major,
         academic_strength: academicStrength,
         interest_area: interestArea,
         investment,
-        placement
+        placement,
       });
 
       setInsight(response.data.insight);
@@ -69,7 +72,6 @@ const ChatBox = () => {
 
   return (
     <div className="page-container">
-
       {/* ✅ TOP NAV BUTTONS */}
       <div className="tab-buttons">
         <button
@@ -154,7 +156,9 @@ const ChatBox = () => {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             />
-            <button className="send-btn" onClick={sendMessage}>Send</button>
+            <button className="send-btn" onClick={sendMessage}>
+              Send
+            </button>
           </div>
         </div>
       )}

@@ -17,7 +17,6 @@ const ChatBox = () => {
   // ✅ NEW STATES
   const [investment, setInvestment] = useState("");
   const [placement, setPlacement] = useState("");
-
   const [insight, setInsight] = useState("");
   const [loadingInsights, setLoadingInsights] = useState(false);
 
@@ -72,6 +71,7 @@ const ChatBox = () => {
 
   return (
     <div className="page-container">
+
       {/* ✅ TOP NAV BUTTONS */}
       <div className="tab-buttons">
         <button
@@ -142,7 +142,10 @@ const ChatBox = () => {
 
           <div className="chat-box">
             {messages.map((msg, index) => (
-              <div key={index} className={`message ${msg.sender}`}>
+              <div
+                key={index}
+                className={`message ${msg.sender}`}
+              >
                 {msg.text}
               </div>
             ))}
@@ -156,6 +159,7 @@ const ChatBox = () => {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             />
+
             <button className="send-btn" onClick={sendMessage}>
               Send
             </button>
